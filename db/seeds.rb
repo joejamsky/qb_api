@@ -1,0 +1,33 @@
+Question.create(text: 'A great opening line to start a conversation with a stranger at a party')
+Question.create(text: 'Something you refuse to say sorry for')
+Question.create(text: 'Why the T-Rex had teeny tiny arms')
+Question.create(text: 'The worst song when stripping for a lover')
+Question.create(text: 'The worst thing to say at a graduation speech')
+Question.create(text: 'What gets better with age')
+Question.create(text: 'Maybe she\'s born with it. Maybe it\'s...?')
+Question.create(text: 'The source of all of my power')
+Question.create(text: 'What do old people smell like?')
+Question.create(text: 'What are your parents hiding from you?')
+Question.create(text: 'Why I drink')
+Question.create(text: 'The secret to a happy life')
+Question.create(text: 'The biggest downside to living in Hell')
+Question.create(text: 'Jesus\'s REAL last words')
+Question.create(text: 'The worst thing for an evil witch to turn you into')
+Question.create(text: 'The jellybean flavor that just missed the cut')
+Question.create(text: 'On your wedding night, it would be horrible to find out that the person you married is...?')
+Question.create(text: 'A name for a really bad Broadway musical')
+Question.create(text: 'The first thing you would do after winning the lottery')
+Question.create(text: 'Name a TV drama that\'s about a vampire doctor')
+Question.create(text: 'The crime you would commit if you could get away with it')
+
+
+user1 = User.create(username: 'Joe', password: '123')
+user2 = User.create(username: 'Moe', password: '123')
+user3 = User.create(username: 'Gloe', password: '123')
+user4 = User.create(username: 'Bro', password: '123')
+
+Match.create(follower_id: user1.id, followee_id: user2.id)
+Match.create(follower_id: user1.id, followee_id: user3.id)
+Match.create(follower_id: user2.id, followee_id: user1.id)
+# t.integer "follower_id"
+# t.integer "followee_id"
