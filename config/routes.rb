@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # User and auth stuff
-  resources :users, only: [:index]
+  # resources :users, only: [:index]
+  resources :users
   resources :questions, only: [:index]
   resources :matches, only: [:index]
   post '/login', to: 'auth#login'
