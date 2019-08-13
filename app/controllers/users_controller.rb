@@ -25,7 +25,6 @@ class UsersController < ApplicationController
     decoded_token = JWT.decode(token, secret, true, { algorithm: 'HS256' })
     user_id = decoded_token[0]["user_id"]
     user = User.find(user_id)
-    # byebug
     render json: user
   end 
 

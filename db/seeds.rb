@@ -16,9 +16,9 @@ Question.create(text: 'The worst thing for an evil witch to turn you into')
 Question.create(text: 'The jellybean flavor that just missed the cut')
 Question.create(text: 'On your wedding night, it would be horrible to find out that the person you married is...?')
 Question.create(text: 'A name for a really bad Broadway musical')
-Question.create(text: 'The first thing you would do after winning the lottery')
-Question.create(text: 'Name a TV drama that\'s about a vampire doctor')
-Question.create(text: 'The crime you would commit if you could get away with it')
+q3 = Question.create(text: 'The first thing you would do after winning the lottery')
+q2 = Question.create(text: 'Name a TV drama that\'s about a vampire doctor')
+q1 = Question.create(text: 'The crime you would commit if you could get away with it')
 
 
 # t.string "username"
@@ -30,11 +30,24 @@ Question.create(text: 'The crime you would commit if you could get away with it'
 # t.boolean "queen"
 user1 = User.create(username: 'Joe', password: '123', email: "joe@joe.com", profile_pic: "https://www.biography.com/.image/t_share/MTIwNjA4NjMzODg2NTc0MDky/abraham-lincoln-9382540-2-402.jpg", bio: "King of the world", age: 20)
 user2 = User.create(username: 'Moe', password: '123', email: "Moe@moe.com", profile_pic: "https://www.onthisday.com/images/people/george-washington-medium.jpg", bio: "Lord of the Westeros", age: 21)
-user3 = User.create(username: 'Gloe', password: '123', email: "Gloe@gloe.com", profile_pic: "https://www.biography.com/.image/t_share/MTE5NDg0MDU1MDEwMjQ4MjA3/thomas-jefferson-9353715-1-402.jpg", bio: "Queen of the Essos", age: 22)
-user4 = User.create(username: 'Bro', password: '123', email: "Bro@bro.com", profile_pic: "https://upload.wikimedia.org/wikipedia/commons/7/70/John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg", bio: "Jester boy", age: 23)
+# user3 = User.create(username: 'Gloe', password: '123', email: "Gloe@gloe.com", profile_pic: "https://www.biography.com/.image/t_share/MTE5NDg0MDU1MDEwMjQ4MjA3/thomas-jefferson-9353715-1-402.jpg", bio: "Queen of the Essos", age: 22)
+# user4 = User.create(username: 'Bro', password: '123', email: "Bro@bro.com", profile_pic: "https://upload.wikimedia.org/wikipedia/commons/7/70/John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg", bio: "Jester boy", age: 23)
 
-Match.create(follower_id: user1.id, followee_id: user2.id)
-Match.create(follower_id: user1.id, followee_id: user3.id)
-Match.create(follower_id: user2.id, followee_id: user1.id)
+# Match.create(follower_id: user1.id, followee_id: user2.id)
+# Match.create(follower_id: user1.id, followee_id: user3.id)
+# Match.create(follower_id: user2.id, followee_id: user1.id)
 # t.integer "follower_id"
 # t.integer "followee_id"
+
+# game1 = Game.create(queen_id: user1.id, drone_id: user2.id)
+# gq1 = GameQuestion.create(question_id: q1.id, game_id: game1.id)
+# gq2 = GameQuestion.create(question_id: q2.id, game_id: game1.id)
+# gq3 = GameQuestion.create(question_id: q3.id, game_id: game1.id)
+
+# user just needs GameQuestions and answers. 
+# They do not need to be associated with a game. But they need to be associated with a user. 
+# Maybe?
+
+# Answer.create(content: "maybe", question_id: gq1.id , drone_id: user2.id)
+# Answer.create(content: "no", question_id: gq1.id , drone_id: user2.id)
+# Answer.create(content: "yes", question_id: gq1.id , drone_id: user2.id)
