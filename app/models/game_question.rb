@@ -1,5 +1,6 @@
 class GameQuestion < ApplicationRecord
-  has_one :question 
-  has_one :game 
+  belongs_to :game 
+  belongs_to :question
   has_many :answers
+  has_many :users, through: :answers
 end

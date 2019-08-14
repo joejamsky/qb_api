@@ -39,15 +39,19 @@ user2 = User.create(username: 'Moe', password: '123', email: "Moe@moe.com", prof
 # t.integer "follower_id"
 # t.integer "followee_id"
 
-# game1 = Game.create(queen_id: user1.id, drone_id: user2.id)
-# gq1 = GameQuestion.create(question_id: q1.id, game_id: game1.id)
-# gq2 = GameQuestion.create(question_id: q2.id, game_id: game1.id)
-# gq3 = GameQuestion.create(question_id: q3.id, game_id: game1.id)
+game1 = Game.create(user_id: user1.id, drone_id: user2.id)
+lobby1 = UserGame.create(user_id: user1.id, game_id: game1.id)
+lobby1 = UserGame.create(user_id: user2.id, game_id: game1.id)
+gq1 = GameQuestion.create(question_id: q1.id, game_id: game1.id)
+gq2 = GameQuestion.create(question_id: q2.id, game_id: game1.id)
+gq3 = GameQuestion.create(question_id: q3.id, game_id: game1.id)
 
 # user just needs GameQuestions and answers. 
 # They do not need to be associated with a game. But they need to be associated with a user. 
 # Maybe?
 
-# Answer.create(content: "maybe", question_id: gq1.id , drone_id: user2.id)
-# Answer.create(content: "no", question_id: gq1.id , drone_id: user2.id)
-# Answer.create(content: "yes", question_id: gq1.id , drone_id: user2.id)
+Answer.create(content: "maybe", game_question_id: gq1.id , user_id: user2.id)
+Answer.create(content: "no", game_question_id: gq2.id , user_id: user2.id,)
+Answer.create(content: "yes", game_question_id: gq3.id , user_id: user2.id)
+
+Choice.create(user_id: user1.id, drone_id: user2.id, game_id: game1.id)

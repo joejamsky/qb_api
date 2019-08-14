@@ -6,7 +6,11 @@ class GamesController < ApplicationController
   end 
 
   def create 
-    render json: Game.create(queen_id: params['id'])
+    game = Game.create(queen_id: params['id'])
+    # game needs three questions 
+    # GameQuestions
+    # { game: game, questions: game.questions   }
+    render json: game
   end 
 
   def joinDrone
@@ -27,7 +31,7 @@ class GamesController < ApplicationController
         render json: msg
       else
         # THIS IS SUCCESS ROUTE 
-        byebug
+        # byebug
         render json: { game: game, drone: game.drone }
       end 
     else 

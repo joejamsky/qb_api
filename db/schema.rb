@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_12_195352) do
+ActiveRecord::Schema.define(version: 2019_08_14_151252) do
 
   create_table "answers", force: :cascade do |t|
     t.string "content"
-    t.integer "question_id"
+    t.integer "game_question_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "drone_id"
+    t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_08_12_195352) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.integer "queen_id"
+    t.integer "user_id"
     t.integer "drone_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,6 +51,13 @@ ActiveRecord::Schema.define(version: 2019_08_12_195352) do
 
   create_table "questions", force: :cascade do |t|
     t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_games", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
