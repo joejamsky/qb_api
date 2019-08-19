@@ -60,8 +60,12 @@ class GamesController < ApplicationController
 
   def pollDrone
     game = Game.find(params['id'])
-    if game 
-      render json: {game: game, questions: game.questions, drones: game.users, answers: game.answers }
+    
+    if Answer.where(game_id: game.id).length > 0
+      game_answers = Answer.where(game_id: game.id)
+      render json: {game: game, questions: game.questions, drones: game.users, answers: game_answers }
+    elsif game 
+      render json: {game: game, questions: game.questions, drones: game.users}
     else 
       msg = { :message => "Can't find drone game"}
       render json: msg
@@ -69,8 +73,45 @@ class GamesController < ApplicationController
   end
 
   def saveAnswers
-    byebug 
     
+    savedAnswers = []
+    answers = params['answers']
+    questions = params['questions']
+    num_ans = params['answers'].length - 1
+    userId = params['user']['id']
+    game = Game.find(params['game']['id'])
+    game_questions = GameQuestion.where(game_id: game.id)
+    # byebug 
+    for i in 0..num_ans
+      newAnswer = Answer.create(content: answers[i]['answer'], question_text: questions[i]['text'], game_question_id: game_questions[i].id, user_id: userId, game_id: game.id)
+      savedAnswers << newAnswer
+    end 
+    render json: savedAnswers
   end 
 
+  def createChoice
+    userId = params['user']['id']
+    droneId = params['id'].to_i
+    gameId = params['game']['id']
+    choice = Choice.create(user_id: userId, drone_id: droneId, game_id: gameId)
+  end 
+
+  def pollChoice
+    game = Game.find(params['id'])
+    byebug
+  end 
+
+  # private 
+
+  # def save_params 
+  #   params.permit( {:answers => []}, :user, :game)
+  # end 
+
 end
+
+# params.permit( {:school => [:id , :name]}, 
+#                {:student => [:id, 
+#                             :name, 
+#                             :address, 
+#                             :city]},
+#                 {:records => [:marks, :subject]})
