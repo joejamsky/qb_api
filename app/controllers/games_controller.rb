@@ -98,7 +98,16 @@ class GamesController < ApplicationController
 
   def pollChoice
     game = Game.find(params['id'])
-    byebug
+    choice = game.choice
+    if choice 
+      drone_id = choice.drone_id
+      queen_id = choice.user_id
+      drone = User.find(drone_id)
+      queen = User.find(queen_id)
+      render json: { queen: queen, drone: drone }
+    else
+      render json: { error: "No Choice Found"}
+    end 
   end 
 
   # private 

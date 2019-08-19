@@ -16,9 +16,7 @@ Rails.application.routes.draw do
   get '/poll-drones/:id', to: 'games#pollDrone'
   post '/saveAnswers', to: 'games#saveAnswers'
   post '/createChoice/:id', to: 'games#createChoice'
-  get '/pollChoice/:id', to: 'game#pollChoice'
-
-  # put '/poll-queen', to: 'games#pollQueen'
+  get '/pollChoice/:id', to: 'games#pollChoice'
   
   post '/login', to: 'auth#login'
   post '/signup', to: 'users#create'
