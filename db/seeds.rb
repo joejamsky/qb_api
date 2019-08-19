@@ -30,8 +30,8 @@ q1 = Question.create(text: 'The crime you would commit if you could get away wit
 # t.boolean "queen"
 user1 = User.create(username: 'Joe', password: '123', email: "joe@joe.com", profile_pic: "https://www.biography.com/.image/t_share/MTIwNjA4NjMzODg2NTc0MDky/abraham-lincoln-9382540-2-402.jpg", bio: "King of the world", age: 20)
 user2 = User.create(username: 'Moe', password: '123', email: "Moe@moe.com", profile_pic: "https://www.onthisday.com/images/people/george-washington-medium.jpg", bio: "Lord of the Westeros", age: 21)
-# user3 = User.create(username: 'Gloe', password: '123', email: "Gloe@gloe.com", profile_pic: "https://www.biography.com/.image/t_share/MTE5NDg0MDU1MDEwMjQ4MjA3/thomas-jefferson-9353715-1-402.jpg", bio: "Queen of the Essos", age: 22)
-# user4 = User.create(username: 'Bro', password: '123', email: "Bro@bro.com", profile_pic: "https://upload.wikimedia.org/wikipedia/commons/7/70/John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg", bio: "Jester boy", age: 23)
+user3 = User.create(username: 'Gloe', password: '123', email: "Gloe@gloe.com", profile_pic: "https://www.biography.com/.image/t_share/MTE5NDg0MDU1MDEwMjQ4MjA3/thomas-jefferson-9353715-1-402.jpg", bio: "Queen of the Essos", age: 22)
+user4 = User.create(username: 'Bro', password: '123', email: "Bro@bro.com", profile_pic: "https://upload.wikimedia.org/wikipedia/commons/7/70/John_Adams%2C_Gilbert_Stuart%2C_c1800_1815.jpg", bio: "Jester boy", age: 23)
 
 # Match.create(follower_id: user1.id, followee_id: user2.id)
 # Match.create(follower_id: user1.id, followee_id: user3.id)

@@ -6,14 +6,15 @@ class GamesController < ApplicationController
   end 
 
   def create 
-    game = Game.create(user_id: params['id'])
+    game = Game.create(user_id: params['id'], full: false)
     render json: game
   end 
 
   def poll 
     game = Game.find(params['game']['id'])
     num_users = game.users.length
-    if num_users > 1
+    if num_users > 2
+      game.update(full: true)
       render json: { bool: "true", num_users: num_users}
     else
       render json: { bool: "false"}
@@ -22,7 +23,7 @@ class GamesController < ApplicationController
 
   def init
     max_questions = 3
-    game = Game.create(user_id: params['id'])
+    game = Game.create(user_id: params['id'], full: false)
     user_game = UserGame.create(user_id: params['id'], game_id: game.id)
     questions = Question.all
     questions = questions.shuffle
@@ -36,10 +37,9 @@ class GamesController < ApplicationController
   end 
 
   def joinDrone
-    game = Game.find_by(drone_id: nil)
+    game = Game.find_by(full: false)
     user_game = UserGame.create(user_id: params['id'], game_id: game.id)
     if game 
-      game.update(drone_id: params['id'])
       render json: { game: game, questions: game.questions}
     else 
       msg = { :message => "Drone can't join game"}
@@ -49,11 +49,9 @@ class GamesController < ApplicationController
 
   def usergame 
     game = Game.find_by(user_id: params['id'])
-    # byebug
     if game 
         render json: game 
     else 
-      # byebug
       render json: { :message => "get game"}
     end
   end 
@@ -81,7 +79,6 @@ class GamesController < ApplicationController
     userId = params['user']['id']
     game = Game.find(params['game']['id'])
     game_questions = GameQuestion.where(game_id: game.id)
-    # byebug 
     for i in 0..num_ans
       newAnswer = Answer.create(content: answers[i]['answer'], question_text: questions[i]['text'], game_question_id: game_questions[i].id, user_id: userId, game_id: game.id)
       savedAnswers << newAnswer
