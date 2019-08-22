@@ -74,6 +74,14 @@ class GamesController < ApplicationController
     
     savedAnswers = []
     answers = params['answers']
+    if answers.length < 4 
+      empty = { "answer" => "" }
+      index = 3 - answers.length
+      for i in 0..index
+        answers << empty
+      end
+    end
+    
     questions = params['questions']
     num_ans = params['answers'].length - 1
     userId = params['user']['id']
